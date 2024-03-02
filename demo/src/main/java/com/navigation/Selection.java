@@ -49,7 +49,7 @@ public class Selection {
         Nav selector = new Nav(header, new NavList().LCRUD, 1, 1);
         int choice = selector.getChoice();
         Input input = new Input();
-
+        
         while (choice > 0) {
             switch (choice) {
                 case 1:
@@ -79,7 +79,6 @@ public class Selection {
         Nav selector = new Nav("Theater", new NavList().LCRUD, 1, 1);
         int choice = selector.getChoice();
         FileData file = new FileData();
-
         Input input = new Input();
 
         while (choice > 0) {
@@ -269,18 +268,39 @@ public class Selection {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Select Movie");
-        int choice = 0;
+        int choice ;
+        // header.getChoices();
         JSONObject selectedRound;
+        
+        // while (true) {
+        //     if (choice - 1 >= 0 && choice - 1 < groupData.length() ) {
+                
+        //         selectedRound = groupData.getJSONObject(choice - 1);
+        //         // System.out.println(groupData.getJSONObject(choice-1));
+        //         break;
+        //     } else {
+        //         System.out.print(" > ");
+        //         choice = sc.nextInt();
 
+        //     }
+        // }
         while (true) {
-            if (choice - 1 >= 0 && choice - 1 < groupData.length()) {
-                selectedRound = groupData.getJSONObject(choice - 1);
-                // System.out.println(groupData.getJSONObject(choice-1));
-                break;
-            } else {
-                System.out.print(" > ");
+            System.out.print(" > ");
+    
+            if (Validation.CheckOlyNum(sc)) {
                 choice = sc.nextInt();
-
+                if (choice - 1 >= 0 && choice - 1 < groupData.length() ) {
+                    selectedRound = groupData.getJSONObject(choice - 1);
+                    // System.out.println(groupData.getJSONObject(choice-1));
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please enter a valid numeric choice.");
+                    // sc.nextLine(); 
+    
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid numeric choice.");
+                sc.nextLine(); 
             }
         }
 
@@ -288,7 +308,7 @@ public class Selection {
         // * ================================================================ */
 
         while (true) {
-            System.out.println(selectedRound);
+            /* System.out.println(selectedRound); */
             String USER_TEMP_ID = "US-1";
             String ROUND_ID = selectedRound.getString("round_id");
             String MOVIE_NAME = selectedRound.getJSONObject("movie").getString("movie_name");
@@ -507,7 +527,7 @@ public class Selection {
                         GenerateQRCode qr = new GenerateQRCode();
 
                         JSONArray ticketsQR = ticketTempData.getJSONArray("ticket");
-                        System.out.println(ticketsQR);
+                      /*   System.out.println(ticketsQR); */
 
                         for (int i = 0; i < ticketsQR.length(); i++) {
                             JSONObject ticketItem = ticketsQR.getJSONObject(i);
@@ -519,10 +539,6 @@ public class Selection {
                                  "\n Movie : "+ MOVIE_NAME+
                                  "\n Start Time : "+ START_TIME
 
-
-
-
-                                 
                                  ;
                                 qr.generateQrCode(qString, ticketItem.getString("row")+"-"+ticketItem.getString("seat"));
 

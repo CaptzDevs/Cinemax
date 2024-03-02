@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.display.Color;
 import com.display.Display;
+import com.login.Validation;
 
 public class Nav {
 
@@ -123,15 +124,41 @@ public class Nav {
     }
 
     public int getChoice() {
+       Scanner  sc = new Scanner(System.in);
+        // System.out.print(" > ");
 
-        Scanner sc = new Scanner(System.in);
+         while (true) {
         System.out.print(" > ");
 
-        this.choice = sc.nextInt();
-
-     
+        if (Validation.CheckOlyNum(sc)) {
+            this.choice = sc.nextInt();
+            break; 
+        } else {
+            System.out.println("Invalid input. Please enter a valid numeric choice.");
+            sc.nextLine(); 
+        }
+    }
         return this.choice;
     }
+
+    public int getChoices() {
+        Scanner  sc = new Scanner(System.in);
+         // System.out.print(" > ");
+ 
+        
+         System.out.print(" > ");
+         if (Validation.CheckOlyNum(sc)) {
+             this.choice = sc.nextInt();
+         } else {
+             System.out.println("Invalid input. Please enter a valid numeric choice.");
+            // sc.nextLine(); 
+             
+             
+         }
+     
+         return this.choice;
+     }
+    
 
     public void setEmptyText(boolean isShown){
         this.emptyText = isShown;

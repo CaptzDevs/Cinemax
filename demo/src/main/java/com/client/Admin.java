@@ -2,10 +2,9 @@ package com.client;
 
 public class Admin extends User {
 
-    public Admin(){ } 
+    public Admin() {
+    }
 
-
-    
     @Override
     public String getId() {
         return super.getId();
@@ -20,10 +19,12 @@ public class Admin extends User {
     public String getLastname() {
         return super.getLastname();
     }
+
     @Override
     public String getBirthdate() {
         return super.getBirthdate();
     }
+
     @Override
     public String getTel() {
         return super.getTel();
